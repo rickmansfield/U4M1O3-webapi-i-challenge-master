@@ -36,7 +36,7 @@ server.put('/users/:id', (req, res) => {
 })
 
 server.delete('/users/:id', (req, res) =>{
-    res.json({message: `DELETE dog with id ${req.params.id}`})
+    res.json({message: `DELETE user with id ${req.params.id}`})
 })
 
 
