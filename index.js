@@ -16,7 +16,24 @@ server.get('/users', (req, res) => {
 })
 
 server.get('/users/:id', (req, res) => {
-    res.status(200).json({ message: 'user/:id working!!' })
+    // res.status(200).json({ message: 'user/:id working!!' })
+    console.log('this is the id', req.params.id)
+    User.findById(req.params.id)
+    .then(user => {
+        console.log(user)
+        if (user) {
+            res.status(200).json(user)
+        } else {
+            console.log('index.js ln:27 ALERT')
+            res.status(404).json({ message: 'not found'})
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({
+            message: err.message
+        })
+    })
 })
 
 server.post('/users', (req, res) => {
